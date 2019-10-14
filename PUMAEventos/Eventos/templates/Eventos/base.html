@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
-</head>
-
-<body>
-
-</body>
+    <head>
+    <title>PumaEvento</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static "Eventos/css/base.css" %}>
+    {% block css_content %}
+    {% endblock %}
+    </head>
 </html>
