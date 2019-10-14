@@ -1,5 +1,14 @@
 from django.db import models
 
+"""
+class EtiquetasWidget(forms.MultiWidget):
+
+    def __init__(self, attrs=None):
+        super().__init__([
+            forms.TextInput(),
+            forms.TextInput()
+        ], attrs)
+"""
 class Evento(models.Model):
     titulo = models.CharField(max_length=100)
     inicio = models.DateTimeField()

@@ -20,4 +20,5 @@ from Eventos.views import evento_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('evento/', evento_view),
+    path('post/<int:pk>/edit/', views.post_edit, name='post_edit')
 ]
