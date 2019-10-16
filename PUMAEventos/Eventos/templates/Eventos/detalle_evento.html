@@ -1,0 +1,13 @@
+{% block content %}
+<div class="evento">
+    {{ evento.titulo }}
+    {{ evento.fecha_de_inicio }}
+    {{ evento.fecha_final }}
+    {{ evento.hora_final }}
+    {{ evento.cupo_maximo }}
+    {{ evento.descripcion }}
+    {{ evento.ubicacion}}
+    <a class="btn" href="{% url 'evento_edit' pk=evento.pk %}">Boton</a>
+</div>
+
+{% endblock %}

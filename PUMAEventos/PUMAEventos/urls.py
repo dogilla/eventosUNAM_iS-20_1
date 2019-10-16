@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Eventos.views import evento_view
+from Eventos.views import evento_view, evento_detail, evento_edit
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('evento/', evento_view),
-    path('post/<int:pk>/edit/', views.post_edit, name='post_edit')
+    path('evento/', evento_view, name= 'evento_view'),
+    path('evento/<int:pk>/', evento_detail, name='evento_detail'),
+    path('evento/<int:pk>/edit/', evento_edit, name='evento_edit'),
 ]
