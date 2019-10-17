@@ -4,7 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 from apps.Eventos.models import Evento
-from apps.Eventos.forms import EventoForm, DireccionForm,EtiquetasForm
+from apps.Eventos.forms import EventoForm,DireccionForm,EtiquetasForm
 
 def index(request):
     return HttpResponse("Index")
@@ -12,8 +12,14 @@ def index(request):
 def evento_view(request):
     if request.method == "POST":
         evento_form = EventoForm(request.POST)
+        direccion_form = DireccionForm(request.POST)
+        etiquetas_form = EtiquetasForm(request.POST)
         if evento_form.is_valid():
             evento_form.save()
+        if direccion_form.is_valid():
+            direccion_form.save()
+        if etiquetas_form.is_valid():
+            etiquetas_form.save()
         return redirect('evento:evento_lista')
     return render(request,"Eventos/eventosform.html",{'eventosform':evento_form})
 
