@@ -7,12 +7,10 @@ class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
         fields = [
-            'titulo',
-            'fecha_de_inicio', 
-            'hora_de_inicio',
-            'fecha_final',
-            'hora_final',            
-            'cupo_maximo', 
+            'titulo', 
+            'inicio', 
+            'fin', 
+            'n_max', 
             'descripcion', 
             'ubicacion'
         ]

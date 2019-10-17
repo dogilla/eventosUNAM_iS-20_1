@@ -1,8 +1,4 @@
 {% block content %}
-
-{% load static %}
-<link rel="stylesheet" href="{% static 'Eventos/css/form.css' %}">
-
 <form method="POST"> {% csrf_token %}
   <h3>Datos del evento</h3>
   {{ evento.as_p }}
@@ -10,6 +6,6 @@
   {{ direccion.as_p }}
   <h3>Etiquetas</h3>
   {{ etiquetas.as_p }}
-  <input type="submit" value="Guardar"/>
+  <input type="submit" value="Save"/>
 </form>
 {% endblock %}

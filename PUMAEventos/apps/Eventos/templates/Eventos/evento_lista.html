@@ -1,0 +1,33 @@
+{% block content %}
+<table class= "table table-bordered">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Título</td>
+            <td>Ubicación</td>
+            <td>FechaInicio</td>
+            <td>Acciones</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list%}
+            {% for evento in object_list %}
+            <tr>
+                <td>{{ evento.pk }}</td>
+                <td>{{ evento.titulo }}</td>
+                <td>{{ evento.ubicacion }}</td>
+                <td>{{ evento.inicio }}</td>
+               
+                <td>
+                    
+                </td>
+            </tr>
+            {% endfor%}
+
+        {% else%}
+            <h1>No hay registros de eventos</h1>
+        {% endif%}
+    </tbody>
+
+</table>
+{% endblock %}
