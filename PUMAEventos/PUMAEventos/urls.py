@@ -17,13 +17,12 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
-from apps.Eventos.views import evento_view, evento_lista, evento_edit, \
-    EventoCreate, EventoList, EventoUpdate
+from Eventos.views import EventoCreate, EventoList, EventoUpdate
 # , evento_lista, evento_delete, evento_edit, \
  #   EventoList, EventoCreate, EventoUpdate, EventoDelete
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url('', admin.site.urls),
     #url(r'^', include('PUMAEventos.apps.Eventos.urls'))
     #path('evento/', evento_view),
     path('nuevo/', EventoCreate.as_view(), name='evento_crear'),

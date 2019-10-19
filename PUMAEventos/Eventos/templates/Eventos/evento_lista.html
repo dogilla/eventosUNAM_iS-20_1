@@ -5,25 +5,25 @@
             <td>#</td>
             <td>Título</td>
             <td>Ubicación</td>
-            <td>FechaInicio</td>
-            <td>Acciones</td>
+            <td>Fecha de inicio</td>
+            <td>FechaFinal</td>
+            <td>Decripcion</td>
+            <td>Calle</td>
         </tr>
     </thead>
     <tbody>
-        {% if object_list%}
-            {% for evento in object_list %}
+        {% if object_list %}
+            {% for evento in object_list  %}
             <tr>
                 <td>{{ evento.pk }}</td>
                 <td>{{ evento.titulo }}</td>
                 <td>{{ evento.ubicacion }}</td>
-                <td>{{ evento.inicio }}</td>
-               
-                <td>
-                    
-                </td>
+                <td>{{ evento.fecha_de_inicio }}</td>
+                <td>{{ evento.fecha_final }}</td>
+                <td>{{ evento.descripcion }}</td>
+                <td>{{ direccion.calle }}</td>
             </tr>
             {% endfor%}
-
         {% else%}
             <h1>No hay registros de eventos</h1>
         {% endif%}
