@@ -1,5 +1,9 @@
 {% block content %}
-<table class= "table table-bordered">
+{% load static %}
+<link rel="stylesheet" href="{% static 'Eventos/css/lista.css' %}">
+
+<div class="tabla">
+<table class= "table-bordered">
     <thead>
         <tr>
             <td>#</td>
@@ -8,7 +12,6 @@
             <td>Fecha de inicio</td>
             <td>FechaFinal</td>
             <td>Decripcion</td>
-            <td>Calle</td>
         </tr>
     </thead>
     <tbody>
@@ -20,14 +23,14 @@
                 <td>{{ evento.ubicacion }}</td>
                 <td>{{ evento.fecha_de_inicio }}</td>
                 <td>{{ evento.fecha_final }}</td>
-                <td>{{ evento.descripcion }}</td>
-                <td>{{ direccion.calle }}</td>
+                <td>{{ evento.descripcion }}</td>            
             </tr>
-            {% endfor%}
+            {% endfor %}
+
         {% else%}
             <h1>No hay registros de eventos</h1>
         {% endif%}
     </tbody>
-
 </table>
+</div>
 {% endblock %}

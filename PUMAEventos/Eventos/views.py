@@ -23,16 +23,21 @@ class EventoList(ListView):
     template_name: str
         nombre del template con la vista de la lista
     """
-    model = Evento
+
     template_name = 'Eventos/evento_lista.html'
 
+    def get_queryset(self):
+        return Evento.objects.all().order_by('pk')
+
     def get_context_data(self, **kwargs):
-        ctx = super(ListView, self).get_context_data(**kwargs)
-        ctx.update({
-            'evento': list(Evento.objects.all().order_by('pk')),
-            'direccion': list(Direccion.objects.all().order_by('evento')),
-        })
-        return ctx   
+        context = super(ListView, self).get_context_data(**kwargs)
+        if 'evento' not in context:
+            context['evento'] = Evento.objects.all().order_by('pk')
+        if 'direccion' not in context:
+            context['direccion'] = Direccion.objects.all().order_by('evento')
+        return context   
+
+
 
 class EventoCreate(CreateView):
     """
