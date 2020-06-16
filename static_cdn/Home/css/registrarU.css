@@ -1,0 +1,94 @@
+html{
+    margin: 0 0;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top; 
+}
+#formas{
+    position: absolute;
+    left:50%;
+    margin-top: 20%;
+    transform: translate(-50%,-50%);
+    padding: 10%;
+    background-color: rgba(131, 26, 26, 0.336);
+    color: black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.89);
+}
+h3{
+    text-align: center;
+    color: white;
+}
+#button-loggin{
+    position: relative;
+    left: 10%;
+    top: 10px;
+    transform: translate(-50%,-50%)
+}
+.user-login-box{
+    position: relative;
+    margin-top: 50px;
+    text-align: center;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    #formas {
+        width: 90%;
+        padding: 15px;
+        margin-top: 100%;
+    }
+    #buttons {
+        left: 10%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    #formas {
+        width: 90%;
+        padding: 15px;
+        margin-top: 50%;
+    }
+    #buttons {
+        left: 10%;
+    }
+}
+
+
+
+@media only screen and (min-width: 800px) {
+    #formas {
+        width: 70%;
+        padding: 15px;
+        margin-top: 45%;
+    }
+    #buttons {
+        left: 10%;
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+    #formas {
+        width: 55%;
+        padding: 15px;
+        margin-top: 30%;
+    }
+    #buttons {
+        left: 10%;
+    }
+}
+
+
+@media only screen and (min-width: 1200px) {
+    #formas {
+        width: 45%;
+        padding: 15px;
+        margin-top: 20%;
+    }
+    #buttons {
+        left: 10%;
+    }
+}
+

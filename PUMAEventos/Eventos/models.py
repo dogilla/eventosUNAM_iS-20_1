@@ -34,79 +34,38 @@ class Evento(models.Model):
     """
     titulo = models.CharField(max_length=100)
     fecha_de_inicio = models.DateField()
-    hora_de_inicio = models.TimeField()
-    fecha_final = models.DateField()
-    hora_final = models.TimeField()
-    cupo_maximo = models.IntegerField()
+    hora_de_inicio = models.TimeField(null=True)
+    fecha_final = models.DateField(null=True)
+    hora_final = models.TimeField(null=True)
+    cupo_maximo = models.IntegerField(null=False)
     descripcion = models.TextField(blank=False, null=False)
+    direccion = models.CharField(max_length=100, null=False, default="null")
     ubicacion = models.CharField(max_length=100, null=False)
+    entidad = models.CharField(max_length = 150, null=True)
+    correo = models.EmailField(max_length = 150, null = False, default = 'null@c.com')
+    etiquetas = models.CharField(max_length=100, null=True)
     #duracion = hora_final - hora_de_inicio
+    mostrar = models.CharField(max_length=100, null=False, default = "0")
+    periodicidad = models.CharField(max_length=100, null=False)
     
     class Meta:
         db_table = 'evento'
 
 
-class Direccion(models.Model):
-    """
-    Un clase que representa la direccion fisica de un evento
-    ...
-
-    Atributos
-    ----------
-    evento: Evento (llave foranea)
-        Es el evento al que pertence la direccion
-    calle: str
-        calle de la direccion
-    numero: str
-        numero exterior de la calle donde se ubica el evento
-    cp: str
-        codigo postal de la ubicacion del evento
-    edo: str
-        estado de la republica donde se realiza el evento
-    colonia:
-        colonia o barrio donde se realiza el evento
-
-    Subclases
-    -------
-    Meta
-        Representa la direccion en la base de datos
-    """
-    evento = models.OneToOneField(
-        Evento,
-        on_delete=models.CASCADE,
-        primary_key=True,
-    )
-    calle = models.CharField(max_length=100)
-    numero = models.CharField(max_length=100)
-    cp = models.CharField(max_length=100)
-    edo = models.CharField(max_length=100)
-    colonia = models.CharField(max_length=100)
+class RegEvento(models.Model):
+    id_Evento = models.IntegerField()
+    email_Usuario = models.EmailField()
+    confirmacion = models.CharField(null = True, default = 'No Confirmado', max_length=50)
 
     class Meta:
-        db_table = 'direccion'
+        unique_together = ('id_Evento', 'email_Usuario')
 
-
-class Etiquetas(models.Model):
-    """
-    Un clase que representa las etiquetas con las que se 
-    identifica un evento
-    ...
-
-    Atributos
-    ----------
-    evento: Evento
-        evento al que pertenece la etiqueta
-    etiqueta: str
-        etiqueta del evento, sirve para categorizar los eventos.
-        Ejemplos de etiquetas: cultura, deporte, sexualidad, musica, etc. 
-    """
-    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
-    lista = models.CharField(max_length=400)
-
+class AsigStaff(models.Model):
+    id_Evento = models.IntegerField()
+    email_staff = models.EmailField()
 
     class Meta:
-        db_table = 'Etiquetas'
-
+        unique_together = ('id_Evento', 'email_staff')
 
 
 

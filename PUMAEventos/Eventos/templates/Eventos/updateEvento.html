@@ -1,0 +1,243 @@
+{% extends "Home/base.html" %}
+
+
+
+{% block css_content %}
+
+{% load static %}
+<link rel="stylesheet" href={% static "Eventos/css/crearEvento.css" %}>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+{% endblock %}
+
+{% block body_content %}
+
+<div id="aveces">
+        {% if user.is_authenticated %}
+        
+                
+        
+                {% if user.username == 'admin' %}
+        
+                <div>
+                        <h1>Necesitas ser organizador para ingresar a esta página</h1>
+                </div>
+        
+                {% else %}
+                {% if user.first_name == 'Organizador' %}
+                <div class="blurred-box">
+
+
+                <div class = "user-login-box">
+        
+                <div id="formas">
+
+
+
+
+
+
+                        <h5 style="text-align: center">Update Evento</h5>
+                        <hr style="background-color: black">
+                        <form method="post">
+                                {% csrf_token %}
+                                <div class="column">
+                                        <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Titulo</label>
+                                                                        <input name="titulo" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Titulo" value="{{post.titulo}}">
+                                                        </div>                                
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Fecha de inicio</label>
+                                                                        <input name="fecha_de_inicio" type="date" min="2019-11-30" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fecha de iniio" value="{{post.fecha_de_inicio}}">
+                                                        </div>
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Hora de inicio</label>
+                                                                        <input name="hora_de_inicio" type="time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Hora de inicio" value={{post.hora_de_inicio}}>
+                                                        </div>
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Fecha final</label>
+                                                                        <input name="fecha_final" type="date" min="2019-12-01"class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fecha final" value={{post.fecha_final}}>
+                                                        </div>
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Hora final</label>
+                                                                        <input name="hora_final" type="time" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Hora final" value={{hora_final}}>
+                                                        </div>
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Periodicidad</label>
+                                                                        <input name="periodicidad" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Periodicidad" value="{{post.periodicidad}}">
+                                                        </div> 
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Cupo maximo</label>
+                                                                        <input name="cupo_maximo" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cupo maximo" value={{post.cupo_maximo}}>
+                                                        </div>                                                                      
+                                        </div>
+                                        <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                                        <label for="exampleFormControlTextarea1">Descripción</label>
+                                                                        <input name="descripcion" type="text" class="form-control" id="exampleFormControlTextarea1" aria-describedby="emailHelp" placeholder="descripcion" value="{{post.descripcion}}"></input>
+                                                        </div>
+                                                        <div class="form-group">
+                                                                        <label for="exampleFormControlTextarea1">Etiquetas</label>
+                                                                        <textarea name="etiquetas" class="form-control" id="exampleFormControlTextarea2" rows="1" placeholder="{{post.etiquetas}}"></textarea>
+                                                        </div>   
+                                                        <div class="form-group">
+                                                                        <label for="exampleFormControlTextarea1">Dirección</label>
+                                                                        <input name="direccion" type="text" class="form-control" id="exampleFormControlTextarea1" aria-describedby="emailHelp" placeholder="direccion" value="{{post.direccion}}"></input>
+                                                        </div>                                                     
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Ubicacion</label>
+                                                                        <input id="ubicacion" name="ubicacion" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Ubicacion"  value="{{post.ubicacion}}">
+                                                        </div> 
+    <script>
+// Initialize and add the map
+window.onload = function() {
+    var latlng = new google.maps.LatLng(19.3238617, -99.1834288);
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: latlng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    var marker = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title: 'Set lat/lon values for this property',
+        draggable: true
+    });
+    google.maps.event.addListener(marker, 'dragend', function(a) {
+        document.getElementById("ubicacion").value = a.latLng.lat().toFixed(8) + "," + a.latLng.lng().toFixed(8);
+
+    });
+};
+    </script>
+
+<div id="map"></div>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD139VGTcPSH3RXaOF5FOWUFgv0g0RyrWA&callback=initMap">
+    </script>
+
+                                                        <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Entidad</label>
+                                                                        <select name="entidad" id="combo_facultades" class="form-control">
+                                                                                        <option value="0">Seleccione una opción(Entidad)</option>
+                                                                                        <option value="21">CENTRO DE FISICA APLICADA Y TECNOLOGIA AVANZADA</option>
+                                                                                        <option value="22">CENTRO DE INVESTIGACIONES EN ECOSISTEMAS</option>
+                                                                                        <option value="75">CENTRO DE NANOCIENCIAS Y NANOTECNOLOGIA</option>
+                                                                                        <option value="20">CENTRO PENINSULAR EN HUMANIDADES Y CIENCIAS SOCIAL</option>
+                                                                                        <option value="80">E.N.E.S. LEON</option>
+                                                                                        <option value="81">E.N.E.S. LEON</option>
+                                                                                        <option value="259">E.N.E.S. LEON (CIENCIAS POLITICAS) </option>
+                                                                                        <option value="77">E.N.E.S. LEON (CONTADURIA)</option>
+                                                                                        <option value="78">E.N.E.S. LEON (ECONOMIA)</option>
+                                                                                        <option value="79">E.N.E.S. LEON (FILOSOFIA)</option>
+                                                                                        <option value="82">E.N.E.S. LEON (GENOMICAS)</option>
+                                                                                        <option value="83">E.N.E.S. MORELIA (ARTES PLASTICAS)</option>
+                                                                                        <option value="85">E.N.E.S. MORELIA (CIENCIAS POLITICAS)</option>
+                                                                                        <option value="84">E.N.E.S. MORELIA (CIENCIAS)</option>
+                                                                                        <option value="86">E.N.E.S. MORELIA (FILOSOFIA)</option>
+                                                                                        <option value="258">E.N.E.S. MORELIA (MUSICA)</option>
+                                                                                        <option value="9">ESCUELA NACIONAL DE ENFERMERIA Y OBSTETRICIA</option>
+                                                                                        <option value="15">ESCUELA NACIONAL DE TRABAJO SOCIAL</option>
+                                                                                        <option value="32">F.E.S. ACATLAN (ACTUARIA)</option>
+                                                                                        <option value="30">F.E.S. ACATLAN (ARQUITECTURA)</option>
+                                                                                        <option value="31">F.E.S. ACATLAN (ARTES PLASTICAS)</option>
+                                                                                        <option value="39">F.E.S. ACATLAN (C IDIOMAS)</option>
+                                                                                        <option value="33">F.E.S. ACATLAN (CIENCIAS POLITICAS)</option>
+                                                                                        <option value="38">F.E.S. ACATLAN (COMPUTACION)</option>
+                                                                                        <option value="34">F.E.S. ACATLAN (DERECHO)</option>
+                                                                                        <option value="35">F.E.S. ACATLAN (ECONOMIA)</option>
+                                                                                        <option value="36">F.E.S. ACATLAN (FILOSOFIA)</option>
+                                                                                        <option value="37">F.E.S. ACATLAN (INGENIERIA)</option>
+                                                                                        <option value="40">F.E.S. ACATLAN (LENGUA EXTRANJERA)</option>
+                                                                                        <option value="53">F.E.S. ARAGON (AGROPECUARIO)</option>
+                                                                                        <option value="47">F.E.S. ARAGON (ARQUITECTURA)</option>
+                                                                                        <option value="48">F.E.S. ARAGON (CIENCIAS POLITICAS)</option>
+                                                                                        <option value="49">F.E.S. ARAGON (DERECHO)</option>
+                                                                                        <option value="50">F.E.S. ARAGON (ECONOMIA)</option>
+                                                                                        <option value="51">F.E.S. ARAGON (FILOSOFIA)</option>
+                                                                                        <option value="52">F.E.S. ARAGON (INGENIERIA)</option>
+                                                                                        <option value="28">F.E.S. CUAUTITLAN (AGRICOLA)</option>
+                                                                                        <option value="23">F.E.S. CUAUTITLAN (ARTES PLASTICAS)</option>
+                                                                                        <option value="25">F.E.S. CUAUTITLAN (CONTADURIA)</option>
+                                                                                        <option value="26">F.E.S. CUAUTITLAN (INGENIERIA)</option>
+                                                                                        <option value="24">F.E.S. CUAUTITLAN (QUIMICA)</option>
+                                                                                        <option value="29">F.E.S. CUAUTITLAN (TECNOLOGIA)</option>
+                                                                                        <option value="27">F.E.S. CUAUTITLAN (VETERINARIA)</option>
+                                                                                        <option value="44">F.E.S. IZTACALA</option>
+                                                                                        <option value="41">F.E.S. IZTACALA (BIOLOGIA)</option>
+                                                                                        <option value="42">F.E.S. IZTACALA (ENFERMERIA)</option>
+                                                                                        <option value="43">F.E.S. IZTACALA (MEDICINA)</option>
+                                                                                        <option value="46">F.E.S. IZTACALA (OPTOMETRIA)</option>
+                                                                                        <option value="45">F.E.S. IZTACALA (PSICOLOGIA)</option>
+                                                                                        <option value="58">F.E.S. ZARAGOZA</option>
+                                                                                        <option value="54">F.E.S. ZARAGOZA (BIOLOGIA)</option>
+                                                                                        <option value="56">F.E.S. ZARAGOZA (ENFERMERIA)</option>
+                                                                                        <option value="57">F.E.S. ZARAGOZA (MEDICINA)</option>
+                                                                                        <option value="59">F.E.S. ZARAGOZA (PSICOLOGIA)</option>
+                                                                                        <option value="55">F.E.S. ZARAGOZA (QUIMICAS)</option>
+                                                                                        <option value="76">F.E.S. ZARAGOZA (TRABAJO SOCIAL)</option>
+                                                                                        <option value="16">FAC DE MED VETERINARIA Y ZOOTECNIA</option>
+                                                                                        <option value="1">FACULTAD DE ARQUITECTURA</option>
+                                                                                        <option value="2">FACULTAD DE ARTES Y DISEÑO</option>
+                                                                                        <option value="3">FACULTAD DE CIENCIAS</option>
+                                                                                        <option value="4">FACULTAD DE CIENCIAS POLITICAS Y SOCIALES</option>
+                                                                                        <option value="6">FACULTAD DE CONTADURIA Y ADMON</option>
+                                                                                        <option value="7">FACULTAD DE DERECHO</option>
+                                                                                        <option value="8">FACULTAD DE ECONOMIA</option>
+                                                                                        <option value="10">FACULTAD DE FILOSOFIA Y LETRAS</option>
+                                                                                        <option value="11">FACULTAD DE INGENIERIA</option>
+                                                                                        <option value="12">FACULTAD DE MEDICINA</option>
+                                                                                        <option value="13">FACULTAD DE MUSICA</option>
+                                                                                        <option value="14">FACULTAD DE ODONTOLOGIA</option>
+                                                                                        <option value="17">FACULTAD DE PSICOLOGIA</option>
+                                                                                        <option value="5">FACULTAD DE QUIMICA</option>
+                                                                                        <option value="19">INSTITUTO DE BIOTECNOLOGIA</option>
+                                                                                        <option value="74">INSTITUTO DE ENERGIAS RENOVABLES</option>
+                                                                                </select><br>
+                                                        </div>                              
+                                                                                                  
+                                        </div>
+                                </div>
+                                <div class="form-group">
+                                                <label for="exampleInputPassword1">Confirma ingresando tu correo</label>
+                                                <input name="correo" type="email" class="form-control" id="exampleInputPassword1" placeholder="Correo" value={{post.correo}} required>
+                                              </div>
+                                <button style="width: 100%" type="submit" class="btn btn-primary">Crear evento</button>
+                
+                                
+                              </form>
+            </div>
+        </div>
+</div>
+            
+                
+                {% else %}
+                
+                        <h1>Necesitas ser organizador para ingresar a esta página</h1>
+
+                
+                {% endif %}                
+
+
+                
+                {% endif %}
+
+
+        {% else %}
+        
+                <h1>Necesitas logearte y ser organizador</h1>
+        {% endif %}
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

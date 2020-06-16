@@ -13,21 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+
+
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
-from Eventos.views import EventoCreate, EventoList, EventoUpdate
-# , evento_lista, evento_delete, evento_edit, \
- #   EventoList, EventoCreate, EventoUpdate, EventoDelete
 
 urlpatterns = [
-    url('', admin.site.urls),
-    #url(r'^', include('PUMAEventos.apps.Eventos.urls'))
-    #path('evento/', evento_view),
-    path('nuevo/', EventoCreate.as_view(), name='evento_crear'),
-    path('editar/<int:pk>', EventoUpdate.as_view(), name='evento_edit'),
-    #path('eliminar/<int:pk>/', EventoDelete.as_view(), name='evento_delete'),
-    path('lista/', EventoList.as_view(), name='evento_lista'),
-]
+    path('admin/', admin.site.urls),
+    path('', include('Home.urls')),
+    #path('', include('Eventos.urls')),
+    path('', include('Eventos.urls')),
+] 
 
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
