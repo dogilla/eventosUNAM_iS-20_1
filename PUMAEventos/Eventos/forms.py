@@ -1,38 +1,49 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Evento,Direccion,Etiquetas
+from .models import Evento
+
+class EventoForm(forms.Form):
+    titulo = forms.CharField(max_length=100)
+    fecha_de_inicio = forms.DateField()
+    #hora_de_inicio = forms.TimeField()
+    #fecha_final = forms.DateField()
+    #hora_final = forms.TimeField()
+    cupo_maximo = forms.IntegerField()
+    descripcion = forms.CharField()
+    direccion = forms.CharField(max_length=100)
+    ubicacion = forms.CharField(max_length=100)
+    #entidad = forms.CharField(max_length = 150)
+    correo = forms.EmailField(max_length = 150)
 
 
-class EventoForm(forms.ModelForm):
-    class Meta:
-        model = Evento
-        fields = [
-            'titulo',
-            'fecha_de_inicio', 
-            'hora_de_inicio',
-            'fecha_final',
-            'hora_final',            
-            'cupo_maximo', 
-            'descripcion', 
-            'ubicacion'
-        ]
-        
-class DireccionForm(forms.ModelForm):
-    class Meta:
-        model = Direccion
-        fields = [
-            'calle', 
-            'numero', 
-            'cp', 
-            'edo', 
-            'colonia'
-            ]
-
-class EtiquetasForm(forms.ModelForm):
-    class Meta:
-        model = Etiquetas
-        fields = [
-            'etiqueta'
-            ]
+class DelEventoForm(forms.Form):
+    correo = forms.EmailField()
+    id = forms.IntegerField()
 
 
+class UpdateForm(forms.Form):
+    """    
+        titulo = forms.CharField(max_length=100)
+        fecha_de_inicio = forms.DateField()
+        hora_de_inicio = forms.TimeField()
+        fecha_final = forms.DateField()
+        hora_final = forms.TimeField()
+        cupo_maximo = forms.IntegerField()
+        descripcion = forms.CharField()
+        ubicacion = forms.CharField(max_length=100)
+        entidad = forms.CharField(max_length = 150)  
+        correo = forms.EmailField(max_length = 150)
+        id = forms.IntegerField() 
+    """
+
+    titulo = forms.CharField(max_length=100)
+    fecha_de_inicio = forms.DateField()
+    #hora_de_inicio = forms.TimeField()
+    #fecha_final = forms.DateField()
+    #hora_final = forms.TimeField()
+    cupo_maximo = forms.IntegerField()
+    descripcion = forms.CharField()
+    direccion = forms.CharField(max_length=100)
+    ubicacion = forms.CharField(max_length=100)
+    #entidad = forms.CharField(max_length = 150)
+    correo = forms.EmailField(max_length = 150)    
